@@ -7,11 +7,18 @@ int main(){
 
     FILE *arquivoRef, *notas1, *notas2, *notas3, *notas4, *notas5;
     bool notaReview = true;
-    char ch; // VARIAVEL QUE VAI LER CADA CARACTERE DO ARQUIVO COM AS NOTAS
+    char ch, nomeArquivo[30]; // VARIAVEL QUE VAI LER CADA CARACTERE DO ARQUIVO COM AS NOTAS
     int tipoNota = 0;
-    
-    // LÊ O ARQUIVO COM AS REVIEWS
-    arquivoRef = fopen("arquivo_reviews.csv", "r");
+
+    // LÊ O ARQUIVO INFORMADO PELO USUARIO
+    printf("INFORME O NOME DO ARQUIVO\n");
+    scanf("%s", nomeArquivo);
+    arquivoRef = fopen(nomeArquivo, "r");
+    while(arquivoRef == NULL){
+        printf("ARQUIVO NAO ENCONTRADO OU VAZIO! INFORME UM NOME VALIDO\n");
+        scanf("%s", nomeArquivo);
+        arquivoRef = fopen(nomeArquivo, "r");
+    }
 
     // ARQUIVOS QUE SERÃO CRIADOS NO PRIMEIRO
     // MOMENTO EM QUE AS VARIÁVEIS FOREM CHAMADAS
@@ -22,7 +29,7 @@ int main(){
     notas4 = fopen("notas4.txt", "w");
     notas5 = fopen("notas5.txt", "w");
 
-    
+
     while (!feof(arquivoRef)){
         /*
         ENQUANTO O ARQUIVO COM AS REVIEWS NÃO TERMINAR
@@ -60,7 +67,7 @@ int main(){
             LEIA OS COMENTARIOS ASSOCIADOS AQUELA NOTA
             */
         }
-        
+
         switch (tipoNota)
         {
         /*
@@ -70,7 +77,7 @@ int main(){
         case 1:
             fputc(ch, notas1);
             if(ch == '\n'){
-                notaReview = true;     
+                notaReview = true;
             }
             break;
         case 2:
@@ -89,7 +96,7 @@ int main(){
             fputc(ch, notas4);
             if(ch == '\n'){
                 notaReview = true;
-                
+
             }
             break;
         case 5:
