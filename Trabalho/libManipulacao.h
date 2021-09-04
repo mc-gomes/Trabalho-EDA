@@ -1,0 +1,4 @@
+#ifndef LIBMANIPULACAO_H
+#define LIBMANIPULACAO_H
+
+#endif
